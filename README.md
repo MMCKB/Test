@@ -11,9 +11,11 @@
 └── .github/
     ├── scripts/
     │   ├── publish_announcement.py
+    │   ├── publish_power_command.py
     │   └── select_schedule.py
     └── workflows/
         ├── publish-announcement.yml
+        ├── publish-power-command.yml
         └── select-schedule.yml
 ```
 
@@ -57,3 +59,11 @@ python .github/scripts/select_schedule.py --clear-selection
 ## 公告
 
 “发布集控公告”工作流保持不变。它只更新 `manifest.json` 中的公告命令，不会修改 `课程表/` 内的文件或其 `yes.id` 参数。
+
+## 下发电源命令
+
+在 GitHub 仓库页面打开 **Actions → 下发集控电源命令 → Run workflow**。工作流仅提供四个固定选项：`restart`（重启）、`shutdown`（关机）、`hibernate`（休眠）和 `sleep`（睡眠）；管理员还必须输入“确认”，并填写 `10` 至 `300` 秒的客户端倒计时。
+
+工作流会在 `manifest.json` 中写入一条具有唯一 ID、固定动作、倒计时和 10 分钟有效期的一次性 `power` 命令。它不支持自由文本命令、Shell 命令、程序路径或命令参数。
+
+> 客户端默认拒绝所有远程电源命令。需要在 CW 的“集控 → 远程电源命令”中，手动开启“允许接收远程电源命令”后才会执行。收到命令后客户端显示倒计时，用户可在倒计时结束前点击取消。未授权、过期或已经处理过的命令不会执行。

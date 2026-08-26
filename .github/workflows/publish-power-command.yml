@@ -1,0 +1,56 @@
+name: 下发集控电源命令
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 选择要下发的电源命令
+        required: true
+        default: restart
+        type: choice
+        options:
+          - restart
+          - shutdown
+          - hibernate
+          - sleep
+      delay_seconds:
+        description: 客户端可取消的倒计时秒数（10 至 300）
+        required: true
+        default: "30"
+        type: string
+      confirmation:
+        description: 输入“确认”后才会下发
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    if: ${{ inputs.confirmation == '确认' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      - name: 写入受限电源命令
+        env:
+          POWER_ACTION: ${{ inputs.action }}
+          POWER_DELAY_SECONDS: ${{ inputs.delay_seconds }}
+        run: >-
+          python .github/scripts/publish_power_command.py
+          --action "$POWER_ACTION"
+          --delay-seconds "$POWER_DELAY_SECONDS"
+
+      - name: 提交并发布清单
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add manifest.json
+          git diff --cached --quiet || git commit -m "chore: 下发集控电源命令"
+          git push
+
+      - name: 显示安全提示
+        run: |
+          echo "电源命令已下发。客户端仍需在集控设置中手动开启接收权限，并可在倒计时内取消。"

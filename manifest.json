@@ -1,14 +1,12 @@
 {
   "schemaVersion": 1,
-  "policyVersion": "repair-schedule-hash",
+  "policyVersion": "power-33019447669",
   "commands": [
     {
-      "id": "announcement-33009357982",
-      "type": "announcement",
-      "title": "test",
-      "message": "1",
-      "duration": 8000,
-      "expiresAt": "2026-08-27T20:14:09.330267Z"
+      "id": "power-33019447669",
+      "type": "power",
+      "action": "shutdown",
+      "expiresAt": "2026-08-26T22:32:30.303756Z"
     }
   ],
   "schedules": [

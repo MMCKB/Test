@@ -1,0 +1,45 @@
+name: 发布集控公告
+
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        description: 公告标题
+        required: true
+        default: 集控公告
+        type: string
+      message:
+        description: 公告内容
+        required: true
+        default: 原神牛逼
+        type: string
+      duration:
+        description: 显示时长（毫秒，1000 至 60000）
+        required: true
+        default: "8000"
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      - name: 更新公告命令
+        run: >-
+          python .github/scripts/publish_announcement.py
+          --title "${{ inputs.title }}"
+          --message "${{ inputs.message }}"
+          --duration "${{ inputs.duration }}"
+
+      - name: 提交并发布清单
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add manifest.json
+          git diff --cached --quiet || git commit -m "chore: publish central-control announcement"
+          git push

@@ -1,0 +1,34 @@
+name: 选择集控课程表
+
+on:
+  workflow_dispatch:
+    inputs:
+      schedule_file:
+        description: '请从“课程表”文件夹中自行选择一个 JSON 文件名，例如 class-a.json'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  select:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      - name: 写入 yes.id 并更新集控清单
+        env:
+          SELECTED_SCHEDULE_FILE: ${{ inputs.schedule_file }}
+        run: >-
+          python .github/scripts/select_schedule.py
+          --selected-file "$SELECTED_SCHEDULE_FILE"
+
+      - name: 提交课程表选择结果
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "课程表" manifest.json
+          git diff --cached --quiet || git commit -m "chore: 选择集控课程表 ${{ inputs.schedule_file }}"
+          git push

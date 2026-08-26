@@ -1,13 +1,6 @@
 {
   "schemaVersion": 1,
-  "policyVersion": "announcement-32970458960",
-  "schedule": {
-    "id": "class-schedule",
-    "name": "集控课程表",
-    "url": "schedules/class-schedule.json",
-    "sha256": "92a114111c9212fc0e0bd22ad3b395e70a976f1cba55cacc244edf9b729ee57d",
-    "scheduleSchemaVersion": 1
-  },
+  "policyVersion": "schedule-select-manual",
   "commands": [
     {
       "id": "announcement-32970458960",
@@ -16,6 +9,15 @@
       "message": "原神牛逼",
       "duration": 8000,
       "expiresAt": "2026-08-27T12:47:21.915603Z"
+    }
+  ],
+  "schedules": [
+    {
+      "id": "class-schedule",
+      "name": "集控课程表",
+      "url": "课程表/class-schedule.json",
+      "sha256": "03286bd5d910eea7fb358b8ff8408f344413a74b622925553b23d68392e22c43",
+      "scheduleSchemaVersion": 1
     }
   ]
 }

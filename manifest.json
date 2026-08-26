@@ -1,11 +1,21 @@
 {
   "schemaVersion": 1,
-  "policyVersion": "2026.08.26-01",
+  "policyVersion": "announcement-32968630479",
   "schedule": {
     "id": "class-schedule",
     "name": "集控课程表",
     "url": "schedules/class-schedule.json",
     "sha256": "92a114111c9212fc0e0bd22ad3b395e70a976f1cba55cacc244edf9b729ee57d",
     "scheduleSchemaVersion": 1
-  }
+  },
+  "commands": [
+    {
+      "id": "announcement-32968630479",
+      "type": "announcement",
+      "title": "集控公告",
+      "message": "原神牛逼",
+      "duration": 8000,
+      "expiresAt": "2026-08-27T12:27:08.501945Z"
+    }
+  ]
 }

@@ -1,10 +1,10 @@
-name: 选择集控课程表
+name: 下发切换课程表
 
 on:
   workflow_dispatch:
     inputs:
       schedule_file:
-        description: '请从“课程表”文件夹中自行选择一个 JSON 文件名，例如 class-a.json'
+        description: '请从“课程表”文件夹中自行选择一个下发后要切换该课程表的 JSON 文件名，例如 class-a.json'
         required: true
         type: string
 

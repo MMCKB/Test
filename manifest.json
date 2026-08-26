@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "policyVersion": "schedule-select-manual",
+  "policyVersion": "announcement-33009357982",
   "commands": [
     {
-      "id": "announcement-32970458960",
+      "id": "announcement-33009357982",
       "type": "announcement",
-      "title": "集控公告",
-      "message": "原神牛逼",
+      "title": "test",
+      "message": "1",
       "duration": 8000,
-      "expiresAt": "2026-08-27T12:47:21.915603Z"
+      "expiresAt": "2026-08-27T20:14:09.330267Z"
     }
   ],
   "schedules": [

@@ -30,11 +30,15 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 更新公告命令
+        env:
+          ANNOUNCEMENT_TITLE: ${{ inputs.title }}
+          ANNOUNCEMENT_MESSAGE: ${{ inputs.message }}
+          ANNOUNCEMENT_DURATION: ${{ inputs.duration }}
         run: >-
           python .github/scripts/publish_announcement.py
-          --title "${{ inputs.title }}"
-          --message "${{ inputs.message }}"
-          --duration "${{ inputs.duration }}"
+          --title "$ANNOUNCEMENT_TITLE"
+          --message "$ANNOUNCEMENT_MESSAGE"
+          --duration "$ANNOUNCEMENT_DURATION"
 
       - name: 提交并发布清单
         run: |

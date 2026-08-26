@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "policyVersion": "announcement-33009357982",
+  "policyVersion": "repair-schedule-hash",
   "commands": [
     {
       "id": "announcement-33009357982",
@@ -16,7 +16,7 @@
       "id": "class-schedule",
       "name": "集控课程表",
       "url": "课程表/class-schedule.json",
-      "sha256": "03286bd5d910eea7fb358b8ff8408f344413a74b622925553b23d68392e22c43",
+      "sha256": "f5365f79414feaccf864d5212a76ceaeb491ce5072ab9e24638c72df79732189",
       "scheduleSchemaVersion": 1
     }
   ]

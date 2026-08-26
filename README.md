@@ -10,10 +10,12 @@
 │   └── class-b.json
 └── .github/
     ├── scripts/
+    │   ├── add_schedule_to_manifest.py
     │   ├── publish_announcement.py
     │   ├── publish_power_command.py
     │   └── select_schedule.py
     └── workflows/
+        ├── add-schedule-to-manifest.yml
         ├── publish-announcement.yml
         ├── publish-power-command.yml
         └── select-schedule.yml
@@ -24,6 +26,18 @@
 将从 ClassWidgets 导出的课程表 JSON 直接放入 `课程表/`。文件名应使用稳定且可读的名称，例如 `class-a.json` 或 `grade1-class3.json`。课程表文件必须是 UTF-8 JSON，并包含有效的 `meta` 对象。
 
 不要手动计算 SHA-256 或手动维护 `manifest.json` 的 `schedules` 数组。运行“选择集控课程表”工作流后，脚本会重新计算所有课程表哈希并更新清单。
+
+## 加入要下发的课程表
+
+把课程表 JSON 放入 `课程表/` 后，在 GitHub 仓库页面打开 **Actions → 加入集控课程表 → Run workflow**。填写该目录顶层的 JSON 文件名，可选填写设置页显示名称。工作流仅将指定文件注册到 `manifest.json` 的 `schedules` 数组，并计算其 SHA-256；不会改动课程表 JSON、不会改动 `yes.id`，也不会移除清单中已有的其他课程表。
+
+工作流拒绝路径、`../`、绝对路径和非 JSON 文件。再次加入同一个文件时会更新该条目的哈希与显示名称，而不会重复添加。
+
+| 课程表状态 | 是否加入 `manifest.json` | CW 是否下载 |
+|---|---:|---:|
+| 仅保存在仓库备用 | 否 | 否 |
+| 需要下发但不自动切换 | 是，`yes.id=0` 或缺失 | 是 |
+| 需要下发并自动切换 | 是，且唯一 `yes.id=1` | 是 |
 
 ## 选择要自动切换的课程表
 

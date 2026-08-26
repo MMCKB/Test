@@ -1,0 +1,40 @@
+name: 加入集控课程表
+
+on:
+  workflow_dispatch:
+    inputs:
+      schedule_file:
+        description: '填写“课程表”文件夹顶层的 JSON 文件名，例如 class-a.json'
+        required: true
+        type: string
+      schedule_name:
+        description: 'CW 设置页显示的课程表名称；留空时使用文件名'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  add:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      - name: 加入课程表清单
+        env:
+          SCHEDULE_FILE: ${{ inputs.schedule_file }}
+          SCHEDULE_NAME: ${{ inputs.schedule_name }}
+        run: >-
+          python .github/scripts/add_schedule_to_manifest.py
+          --schedule-file "$SCHEDULE_FILE"
+          --schedule-name "$SCHEDULE_NAME"
+
+      - name: 提交并发布清单
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add manifest.json
+          git diff --cached --quiet || git commit -m "chore: 加入集控课程表 ${{ inputs.schedule_file }}"
+          git push

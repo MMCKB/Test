@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "policyVersion": "announcement-35231213880",
+  "policyVersion": "announcement-35231328525",
   "commands": [
     {
-      "id": "announcement-35231213880",
+      "id": "announcement-35231328525",
       "type": "announcement",
       "title": "集控公告",
       "message": "Zako",
-      "duration": 60000,
-      "expiresAt": "2026-09-18T14:05:04.873103Z"
+      "duration": 8000,
+      "expiresAt": "2026-09-18T14:06:05.321475Z"
     }
   ],
   "schedules": [

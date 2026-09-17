@@ -1,12 +1,14 @@
 {
   "schemaVersion": 1,
-  "policyVersion": "power-35231543450",
+  "policyVersion": "announcement-35231677226",
   "commands": [
     {
-      "id": "power-35231543450",
-      "type": "power",
-      "action": "hibernate",
-      "expiresAt": "2026-09-17T14:18:38.914861Z"
+      "id": "announcement-35231677226",
+      "type": "announcement",
+      "title": "集控公告",
+      "message": "1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111",
+      "duration": 60000,
+      "expiresAt": "2026-09-18T14:09:19.574985Z"
     }
   ],
   "schedules": [

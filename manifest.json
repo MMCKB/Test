@@ -1,12 +1,14 @@
 {
   "schemaVersion": 1,
-  "policyVersion": "power-33019447669",
+  "policyVersion": "announcement-35231213880",
   "commands": [
     {
-      "id": "power-33019447669",
-      "type": "power",
-      "action": "shutdown",
-      "expiresAt": "2026-08-26T22:32:30.303756Z"
+      "id": "announcement-35231213880",
+      "type": "announcement",
+      "title": "集控公告",
+      "message": "Zako",
+      "duration": 60000,
+      "expiresAt": "2026-09-18T14:05:04.873103Z"
     }
   ],
   "schedules": [
